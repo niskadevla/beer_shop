@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Beer shop</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container-fluid">
+      <div class="login">
+        <nav class="login__nav">
+          <button type="button" class="btn btn__sign-in">Sign in</button>
+          <button type="button" class="btn btn__sign-up">Sign up</button>
+        </nav>
+
+        <div id="modalSigin" class="modal">
+          <div class="modal__dialog">
+            <form class="login-form login-form__signin" action="/" method="post">
+              <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" name="email" placeholder="email">
+              </div>
+              <div class="form-group">
+                <label>Your password:</label>
+                <input type="password" name="password" placeholder="password">
+              </div>
+              <button class="btn btn__sign-in" type="submit" name="submit">Sign in for shop</button>
+            </form>
+
+            <button class="btn btn-close" type="button">&times;</button>
+          </div>
+        </div>
+
+        <div id="modalSignup" class="modal">
+          <div class="modal__dialog">
+            <form class="login-form login-form__signup" action="/" method="post">
+              <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" placeholder="name">
+              </div>
+              <div class="form-group">
+                <label>Surname</label>
+                <input type="text" name="surname" placeholder="surname">
+              </div>
+              <div class="form-group">
+                <label>Your Email:</label>
+                <input type="email" name="email" placeholder="email">
+              </div>
+              <div class="form-group">
+                <label>Your Password:</label>
+                <input type="password" name="password" placeholder="password">
+              </div>
+              <button class="btn btn__sign-up" type="submit" name="submit">Sign up for shop</button>
+            </form>
+
+            <button class="btn btn-close" type="button">&times;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container-fluid">
+
+    </div>
+  </main>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
