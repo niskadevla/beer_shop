@@ -28,11 +28,15 @@ function addListeners() {
 
   document.getElementById('loadMore')
     .addEventListener('click',loadGoods);
+
+  document.getElementById('showSelected')
+    .addEventListener('click',showSelectedGoods);
+
+  document.getElementById('clearSelected')
+    .addEventListener('click',clearSelectedGoods);
 }
 
 addListeners();
-
-// cardList.renderCardList();
 
 async function getDate(url) {
   let response = await fetch(url);
@@ -44,8 +48,56 @@ async function getDate(url) {
 function loadGoods() {
   getDate(`https://api.punkapi.com/v2/beers?page=${page}&per_page=${PER_PAGE}`)
     .then(res => {
-      beers = res.map(obj => Object.assign({}, {data: obj, isSelected: false}))
+      beers.push(...res.map(obj => Object.assign({}, {data: obj, isSelected: false})) );
+      setIsSelected(getLS());
       cardList.renderCardList();
       page++;
     });
+}
+
+function getLS() {
+  return JSON.parse(localStorage.getItem('selectedBeers'));
+}
+
+function saveToLS(arr) {
+  const ls = getLS();
+
+  if (ls) {
+    arr.push(...ls);
+  }
+
+  localStorage.setItem('selectedBeers', JSON.stringify(arr));
+}
+
+function findSelectedGoods(selector) {
+  const $cardList = document.querySelector(selector);
+  const $selectedItems = [...$cardList.children].filter(child => child.querySelector('input').checked);
+  const selectedGoods = $selectedItems.map($item => beers.find(beer => beer.data.id === +$item.id));
+
+  return selectedGoods;
+}
+
+function setIsSelected(selectedGoods) {
+  if (!selectedGoods) {
+    return
+  }
+
+  selectedGoods.forEach( item => beers.forEach(beer => {
+    if (item.data.id === beer.data.id) {
+      item.isSelected = true;
+      beer.isSelected = true;
+    }
+  }));
+}
+
+function showSelectedGoods() {
+  const selectedGoods = findSelectedGoods('#cardList');
+
+  setIsSelected(selectedGoods);
+  saveToLS(selectedGoods);
+
+}
+
+function clearSelectedGoods() {
+  localStorage.clear();
 }

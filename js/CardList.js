@@ -7,20 +7,22 @@ export class CardList {
   }
 
   renderCardList() {
+    this.$root.innerHTML = '';
     beers.forEach(beer => {
-      const $card = elementFabric.createEl('li', {
-                                          className: ['card-list__item']
-                                        });
-
-      const $list = elementFabric.createEl('ul', {
-                                          className: ['content-list']
-                                        });
       const {isSelected} = beer;
       const data = {};
       data.id = beer.data.id;
       data.image_url = beer.data.image_url;
       data.name = beer.data.name;
       data.abv = beer.data.abv;
+      const $card = elementFabric.createEl('li', {
+                                          id: data.id,
+                                          className: ['card-list__item'],
+                                        });
+
+      const $list = elementFabric.createEl('ul', {
+                                          className: ['content-list']
+                                        });
 
       for(let key in data) {
         let $img = '';
@@ -62,7 +64,6 @@ export class CardList {
 
       $list.append($listItem);
       $card.append($list);
-      console.log(this.$root);
       this.$root.append($card);
     });
   }
