@@ -7,6 +7,10 @@
   outline: none;
 }
 
+ul {
+  list-style: none;
+}
+
 :root {
   font-size: calc(0.8em + 1vw);
 }
@@ -34,7 +38,14 @@
 .modal__dialog {
   position: relative;
   margin: 2rem auto;
+  padding: .5rem;
   max-width: 500px;
+  border-radius: 5px;
+  background-color: #3122e2;
+}
+
+.modal-bag .modal__dialog {
+  background-color: #fff;
 }
 
 .btn {
@@ -140,6 +151,10 @@
   padding: .2rem 0;
 }
 
+
+.main {
+  position: relative;
+}
 
 .card-list input[type="checkbox"] {
   cursor: pointer;

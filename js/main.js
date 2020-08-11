@@ -1,9 +1,11 @@
 import {Modal} from './Modal.js';
 import {CardList} from './CardList.js';
+import {Bag} from './Bag.js';
 
 const modalSignin = new Modal('#modalSignin');
 const modalSignup = new Modal('#modalSignup');
 const cardList = new CardList('#cardList');
+const bag = new Bag('#modalBag');
 let page = 1;
 const PER_PAGE = 15;
 window.beers = [];
@@ -34,6 +36,9 @@ function addListeners() {
 
   document.getElementById('clearSelected')
     .addEventListener('click',clearSelectedGoods);
+
+  document.querySelectorAll('form').forEach(el =>
+    el.addEventListener('submit', e => e.preventDefault()))
 }
 
 addListeners();
@@ -96,6 +101,14 @@ function showSelectedGoods() {
   setIsSelected(selectedGoods);
   saveToLS(selectedGoods);
 
+  let ls = getLS();
+
+  if (!ls || !ls.length) {
+    return
+  }
+
+  bag.renderBag(ls);
+  bag.showModal();
 }
 
 function clearSelectedGoods() {
