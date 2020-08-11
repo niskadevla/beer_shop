@@ -7,6 +7,7 @@ const modalSignup = new Modal('#modalSignup');
 const cardList = new CardList('#cardList');
 const bag = new Bag('#modalBag');
 let page = 1;
+let order = 1;
 const PER_PAGE = 15;
 window.beers = [];
 // window.beers = [
@@ -37,8 +38,19 @@ function addListeners() {
   document.getElementById('clearSelected')
     .addEventListener('click',clearSelectedGoods);
 
-  document.querySelectorAll('form').forEach(el =>
-    el.addEventListener('submit', e => e.preventDefault()))
+  document.getElementById('nameFilter')
+    .addEventListener('click', e => {
+      e.preventDefault();
+      sortInOrder();
+      cardList.renderCardList();
+    });
+
+  document.getElementById('alcoholFilter')
+    .addEventListener('click', e => {
+      e.preventDefault();
+      sortInOrder();
+      cardList.renderCardList();
+    });
 }
 
 addListeners();
@@ -113,4 +125,13 @@ function showSelectedGoods() {
 
 function clearSelectedGoods() {
   localStorage.clear();
+}
+
+function sortInOrder() {
+  if (!beers || !beers.length) {
+    return
+  }
+
+  beers.sort((a, b) => a.data.name > b.data.name ? order : -order);
+  order = -order;
 }

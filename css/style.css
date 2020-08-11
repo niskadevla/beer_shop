@@ -45,6 +45,7 @@ ul {
 }
 
 .modal-bag .modal__dialog {
+  max-width: 900px;
   background-color: #fff;
 }
 
@@ -179,7 +180,7 @@ flex-grow: 5;
 }
 
 .content-list__item:first-child {
-  flex: 0 0 5%;
+  flex: 0 0 7%;
 }
 
 .content-list__item:last-child {
