@@ -55,7 +55,7 @@ function addListeners() {
 
 addListeners();
 
-async function getDate(url) {
+async function getData(url) {
   let response = await fetch(url);
   let result = await response.json();
 
@@ -63,9 +63,9 @@ async function getDate(url) {
 }
 
 function loadGoods() {
-  getDate(`https://api.punkapi.com/v2/beers?page=${page}&per_page=${PER_PAGE}`)
+  getData(`https://api.punkapi.com/v2/beers?page=${page}&per_page=${PER_PAGE}`)
     .then(res => {
-      beers.push(...res.map(obj => Object.assign({}, {data: obj, isSelected: false})) );
+      beers.push(...res.map(obj => ({data: obj, isSelected: false})) );
       setIsSelected(getLS());
       cardList.renderCardList();
       page++;
