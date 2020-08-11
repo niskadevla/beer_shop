@@ -84,6 +84,17 @@
   opacity: 0.5;
 }
 
+.btn__clear {
+  background-color: #f13819;
+  border-color: #c93e1c;
+}
+
+.btn__clear:hover,
+.btn__clear:active {
+  background-color: #f24e33;
+  border-color: #cb4c2e;
+}
+
 .header {
   background-color: #3122e2;
 }
@@ -179,8 +190,8 @@ flex-grow: 5;
 
 .content-body img {
   display: block;
-  width: calc(25px + 1vw);
-  height: auto;
+  width: auto;
+  height: 3rem;
 }
 
 
