@@ -15,12 +15,17 @@ export class CardList {
       const $list = elementFabric.createEl('ul', {
                                           className: ['content-list']
                                         });
-      const {data, isSelected} = beer;
+      const {isSelected} = beer;
+      const data = {};
+      data.id = beer.data.id;
+      data.image_url = beer.data.image_url;
+      data.name = beer.data.name;
+      data.abv = beer.data.abv;
 
       for(let key in data) {
         let $img = '';
 
-        if (key == 'img') {
+        if (key == 'image_url') {
           $img = elementFabric.createEl('img', {
                                               width: '25',
                                               height: '50',
