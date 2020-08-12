@@ -6,7 +6,7 @@ export class CardList {
     this.$root = document.querySelector(selector);
   }
 
-  renderCardList() {   
+  renderCardList() {
     while (this.$root.children[1]) {
       this.$root.lastElementChild.remove();
     }
@@ -24,10 +24,6 @@ export class CardList {
                                              id: beersData.id,
                                              className: ['card-list__item', 'content-list', 'd-tr'],
                                            });
-
-      // const $td = elementFabric.createEl('div', {className: ['d-td']});
-      // const $innerTable = elementFabric.createEl('div', {className: ['d-table']});
-      // const $list = elementFabric.createEl('ul', {className: ['content-list', 'd-tr']});
 
       for(let key in beersData) {
         let $img = '';
@@ -66,10 +62,7 @@ export class CardList {
                                                 $link
                                               );
 
-      $card.append($listItem);
-      // $innerTable.append($list);
-      // $td.append($innerTable);
-      // $card.append($td);
+      $card.append($listItem);      
       this.$root.append($card);
     });
   }

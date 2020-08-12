@@ -8,8 +8,8 @@ export class Bag extends Modal {
     this.$root = document.querySelector(selector);
   }
 
-  renderBag(beers) {
-    if (!beers || !beers.length) {
+  renderBag(ids) {
+    if (!ids || !ids.length) {
       return
     }
 
@@ -20,10 +20,12 @@ export class Bag extends Modal {
                                              type: 'button'
                                            },
                                            'X');
-    const $cardList = elementFabric.createEl('ul', {className: ['card-list']});
+    const $cardList = elementFabric.createEl('ul', {className: ['card-list', 'd-table']});
     this.$root.innerHTML = '';
 
-    beers.forEach(({data}) => {
+    const beersFromBag = ids.map(id => beers.find(({data}) => data.id == id));
+
+    beersFromBag.forEach(({data}) => {
       const beersData = {
         id: data.id,
         image_url: data.image_url,
@@ -34,10 +36,8 @@ export class Bag extends Modal {
       const $card = elementFabric.createEl('li',
                                            {
                                             id: beersData.id,
-                                            className: ['card-list__item'],
+                                            className: ['card-list__item', 'content-list', 'd-tr'],
                                            });
-
-      const $list = elementFabric.createEl('ul', {className: ['content-list']});
 
       for(let key in beersData) {
         let $img = '';
@@ -55,14 +55,13 @@ export class Bag extends Modal {
         const $link = elementFabric.createEl('a',
                                             {className: ['content-list__link']},
                                             $img || beersData[key]);
-        const $listItem = elementFabric.createEl('li',
-                                                 {className: ['content-list__item']},
+        const $listItem = elementFabric.createEl('div',
+                                                 {className: ['content-list__item', 'd-td']},
                                                  $link);
 
-        $list.append($listItem);
+        $card.append($listItem);
       }
-
-      $card.append($list);
+    
       $cardList.append($card);
     });
 
