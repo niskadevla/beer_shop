@@ -16,7 +16,8 @@ export class CardList {
         id: data.id,
         image_url: data.image_url,
         name: data.name,
-        abv: data.abv,
+        food_pairing: data.food_pairing,
+        abv: data.abv,        
       };
 
       const $card = elementFabric.createEl('li',
@@ -62,7 +63,7 @@ export class CardList {
                                                 $link
                                               );
 
-      $card.append($listItem);      
+      $card.append($listItem);
       this.$root.append($card);
     });
   }

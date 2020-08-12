@@ -23,7 +23,7 @@ export class Bag extends Modal {
     const $cardList = elementFabric.createEl('ul', {className: ['card-list', 'd-table']});
     this.$root.innerHTML = '';
 
-    const beersFromBag = ids.map(id => beers.find(({data}) => data.id == id));
+    const beersFromBag = ids.map(id => beers.find(({data}) => data.id == id));  
 
     beersFromBag.forEach(({data}) => {
       const beersData = {
@@ -61,7 +61,7 @@ export class Bag extends Modal {
 
         $card.append($listItem);
       }
-    
+
       $cardList.append($card);
     });
 
