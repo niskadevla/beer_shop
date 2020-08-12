@@ -68,30 +68,27 @@
   </header>
 
   <main class="main">
-
     <div class="content">
-      <div class="content-header">
-        <ul class="content-list">
-          <li class="content-list__item">
-            <a class="content-list__link">#</a>
-          </li>
-          <li class="content-list__item">
-            <a class="content-list__link">Image</a>
-          </li>
-          <li id="nameFilter" class="content-list__item">
-            <a class="content-list__link" href="/">Name</a>
-          </li>
-          <li id="alcoholFilter" class="content-list__item">
-            <a class="content-list__link" href="/">Alcohol</a>
-          </li>
-          <li class="content-list__item">
-            <a class="content-list__link">Select</a>
-          </li>
-        </ul>
-      </div>
 
       <div class="content-body">
-        <ul id="cardList" class="card-list">
+        <ul id="cardList" class="card-list d-table">
+          <li class="card-list__item content-list d-tr">
+            <div class="content-list__item d-th">
+              <a class="content-list__link">#</a>
+            </div>
+            <div class="content-list__item d-th">
+              <a class="content-list__link">Image</a>
+            </div>
+            <div id="nameFilter" class="content-list__item d-th">
+              <a class="content-list__link" href="/">Name</a>
+            </div>
+            <div id="alcoholFilter" class="content-list__item d-th">
+              <a class="content-list__link" href="/">Alcohol</a>
+            </div>
+            <div class="content-list__item d-th">
+              <a class="content-list__link">Select</a>
+            </div>
+          </li>
         </ul>
       </div>
 
@@ -105,7 +102,7 @@
 
     </div>
 
-    <div id="modalBag" class="modal modal-bag">      
+    <div id="modalBag" class="modal modal-bag">
     </div>
   </main>
 

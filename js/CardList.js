@@ -6,8 +6,11 @@ export class CardList {
     this.$root = document.querySelector(selector);
   }
 
-  renderCardList() {
-    this.$root.innerHTML = '';
+  renderCardList() {   
+    while (this.$root.children[1]) {
+      this.$root.lastElementChild.remove();
+    }
+
     beers.forEach(({data, isSelected}) => {
       const beersData = {
         id: data.id,
@@ -19,10 +22,12 @@ export class CardList {
       const $card = elementFabric.createEl('li',
                                            {
                                              id: beersData.id,
-                                             className: ['card-list__item'],
+                                             className: ['card-list__item', 'content-list', 'd-tr'],
                                            });
 
-      const $list = elementFabric.createEl('ul', {className: ['content-list']});
+      // const $td = elementFabric.createEl('div', {className: ['d-td']});
+      // const $innerTable = elementFabric.createEl('div', {className: ['d-table']});
+      // const $list = elementFabric.createEl('ul', {className: ['content-list', 'd-tr']});
 
       for(let key in beersData) {
         let $img = '';
@@ -40,11 +45,11 @@ export class CardList {
         const $link = elementFabric.createEl('a',
                                              {className: ['content-list__link']},
                                              $img || beersData[key]);
-        const $listItem = elementFabric.createEl('li',
-                                                 {className: ['content-list__item']},
+        const $listItem = elementFabric.createEl('div',
+                                                 {className: ['content-list__item', 'd-td']},
                                                  $link);
 
-        $list.append($listItem);
+        $card.append($listItem);
       }
 
       const $checkbox = elementFabric.createEl('input', {
@@ -56,13 +61,15 @@ export class CardList {
                                           },
                                           $checkbox);
       const $listItem = elementFabric.createEl('li', {
-                                                  className: ['content-list__item']
+                                                  className: ['content-list__item', 'd-td']
                                                 },
                                                 $link
                                               );
 
-      $list.append($listItem);
-      $card.append($list);
+      $card.append($listItem);
+      // $innerTable.append($list);
+      // $td.append($innerTable);
+      // $card.append($td);
       this.$root.append($card);
     });
   }
