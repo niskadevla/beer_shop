@@ -2,7 +2,10 @@ import {Bag} from './Bag.js';
 const bag = new Bag('#modalBag');
 
 export class LocalStore {
-  
+  constructor() {
+    this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
+  }
+
   getFromLocalStorage() {
     const ls = JSON.parse(localStorage.getItem('selectedBeers'));
 
@@ -13,7 +16,7 @@ export class LocalStore {
     return ls;
   }
 
-  _saveToLocalStorage(ids) {
+  saveToLocalStorage(ids) {
     const ls = this.getFromLocalStorage();
 
     if (ls) {
@@ -22,6 +25,22 @@ export class LocalStore {
     }
 
     localStorage.setItem('selectedBeers', JSON.stringify(ids));
+  }
+
+  removeFromLocalStorage(id) {
+    const ls = this.getFromLocalStorage();
+
+    if (!ls || !ls.length) {
+      return
+    }
+
+    const index = ls.findIndex(item => item == id);
+
+    if (~index) {
+      console.log('remove');
+      ls.splice(index, 1);
+      localStorage.setItem('selectedBeers', JSON.stringify(ls));
+    }
   }
 
   _findSelectedIDs(selector) {
@@ -49,7 +68,7 @@ export class LocalStore {
   showSelectedGoods(selector) {
     const selectedIDs = this._findSelectedIDs(selector);
 
-    this._saveToLocalStorage(selectedIDs);
+    this.saveToLocalStorage(selectedIDs);
     let ls = this.getFromLocalStorage();
 
     if (!ls || !ls.length) {

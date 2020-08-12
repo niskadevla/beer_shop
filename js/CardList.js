@@ -1,9 +1,21 @@
 import {ElementFabric} from './ElementFabric.js';
+import {LocalStore} from './LocalStore.js'
 const elementFabric = new ElementFabric();
+const localStore = new LocalStore();
 
 export class CardList {
   constructor(selector) {
     this.$root = document.querySelector(selector);
+  }
+
+  handlerForInput() {
+    const id = +this.closest('.card-list__item').id;
+
+    if (this.checked) {
+      localStore.saveToLocalStorage([id]);
+    } else {
+      localStore.removeFromLocalStorage(id);
+    }
   }
 
   renderCardList() {
@@ -17,7 +29,7 @@ export class CardList {
         image_url: data.image_url,
         name: data.name,
         food_pairing: data.food_pairing,
-        abv: data.abv,        
+        abv: data.abv,
       };
 
       const $card = elementFabric.createEl('li',
@@ -62,6 +74,8 @@ export class CardList {
                                                 },
                                                 $link
                                               );
+
+      $checkbox.addEventListener('change', this.handlerForInput);
 
       $card.append($listItem);
       this.$root.append($card);
