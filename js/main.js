@@ -41,14 +41,14 @@ function addListeners() {
   document.getElementById('nameFilter')
     .addEventListener('click', e => {
       e.preventDefault();
-      sortInOrder();
+      sortInOrder('name');
       cardList.renderCardList();
     });
 
   document.getElementById('alcoholFilter')
     .addEventListener('click', e => {
       e.preventDefault();
-      sortInOrder();
+      sortInOrder('abv');
       cardList.renderCardList();
     });
 }
@@ -66,18 +66,18 @@ function loadGoods() {
   getData(`https://api.punkapi.com/v2/beers?page=${page}&per_page=${PER_PAGE}`)
     .then(res => {
       beers.push(...res.map(obj => ({data: obj, isSelected: false})) );
-      setIsSelected(getLS());
+      setIsSelected(getFromLocalStorage());
       cardList.renderCardList();
       page++;
     });
 }
 
-function getLS() {
+function getFromLocalStorage() {
   return JSON.parse(localStorage.getItem('selectedBeers'));
 }
 
-function saveToLS(arr) {
-  const ls = getLS();
+function saveToLocalStorage(arr) {
+  const ls = getFromLocalStorage();
 
   if (ls) {
     arr.push(...ls);
@@ -88,8 +88,10 @@ function saveToLS(arr) {
 
 function findSelectedGoods(selector) {
   const $cardList = document.querySelector(selector);
-  const $selectedItems = [...$cardList.children].filter(child => child.querySelector('input').checked);
-  const selectedGoods = $selectedItems.map($item => beers.find(beer => beer.data.id === +$item.id));
+  const $selectedItems = [...$cardList.children]
+                            .filter(child => child.querySelector('input')?.checked);
+  const selectedGoods = $selectedItems
+                            .map($item => beers.find(beer => beer.data.id === +$item.id));
 
   return selectedGoods;
 }
@@ -111,9 +113,9 @@ function showSelectedGoods() {
   const selectedGoods = findSelectedGoods('#cardList');
 
   setIsSelected(selectedGoods);
-  saveToLS(selectedGoods);
+  saveToLocalStorage(selectedGoods);
 
-  let ls = getLS();
+  let ls = getFromLocalStorage();
 
   if (!ls || !ls.length) {
     return
@@ -127,11 +129,11 @@ function clearSelectedGoods() {
   localStorage.clear();
 }
 
-function sortInOrder() {
+function sortInOrder(key) {
   if (!beers || !beers.length) {
     return
   }
 
-  beers.sort((a, b) => a.data.name > b.data.name ? order : -order);
+  beers.sort((a, b) => a.data[key] > b.data[key] ? order : -order);
   order = -order;
 }
