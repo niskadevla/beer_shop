@@ -86,31 +86,6 @@ ul {
   background-color: #28A7A7;
 }
 
-/* .btn__sign-in,
-.btn__second {
-  background-color: #3bf755;
-  border-color: #26ba46;
-} */
-
-/* .btn__sign-in:hover,
-.btn__sign-in:active,
-.btn__second:hover,
-.btn__second:active {
-  background-color: #74fb78;
-  border-color: #5fd162;
-} */
-/*
-.btn__sign-up {
-  background-color: #3bf7dc;
-  border-color: #26baa5;
-} */
-
-/* .btn__sign-up:hover,
-.btn__sign-up:active {
-  background-color: #74fbe8;
-  border-color: #5fd1c1;
-} */
-
 .btn-close {
   position: absolute;
   top: -1rem;
@@ -139,6 +114,8 @@ ul {
 .header {
   padding: .5rem 0;
   background-color: #4257B2;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.5);
+  z-index: 5;
 }
 
 .header-row {
@@ -196,9 +173,18 @@ ul {
 }
 
 
-
-.main {
+.main,
+.header {
   position: relative;
+  left: 0;
+  top: -.5rem;
+  transition: 0.3s;
+}
+
+.header:hover,
+.header:hover ~ .main {
+  top: 0;
+  z-index: 1;
 }
 
 .card-list input[type="checkbox"] {
