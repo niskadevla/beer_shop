@@ -128,7 +128,7 @@ ul {
   position: relative;
   left: 0;
   top: -.5rem;
-  padding: .5rem 0;
+  padding: .7rem 0 .2rem;
   background-color: #4257B2;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.5);
   z-index: 5;
@@ -137,6 +137,7 @@ ul {
 
 .header:hover {
   top: 0;
+  padding: .7rem 0;
   z-index: 1;
 }
 
