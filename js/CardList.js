@@ -69,7 +69,7 @@ export class CardList {
                                               className: ['content-list__link']
                                           },
                                           $checkbox);
-      const $listItem = elementFabric.createEl('li', {
+      const $listItem = elementFabric.createEl('label', {
                                                   className: ['content-list__item', 'd-td']
                                                 },
                                                 $link

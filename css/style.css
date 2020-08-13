@@ -183,7 +183,8 @@ ul {
 }
 
 
-.card-list input[type="checkbox"] {
+.card-list input[type="checkbox"],
+.card-list label {
   cursor: pointer;
 }
 
@@ -198,6 +199,7 @@ ul {
 
 .content-list__link {
   display: block;
+  height: 100%;
   padding: .2rem .4rem;
   color: #333;
   text-decoration: none;
