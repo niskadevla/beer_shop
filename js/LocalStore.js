@@ -36,8 +36,7 @@ export class LocalStore {
 
     const index = ls.findIndex(item => item == id);
 
-    if (~index) {
-      console.log('remove');
+    if (~index) {      
       ls.splice(index, 1);
       localStorage.setItem('selectedBeers', JSON.stringify(ls));
     }
