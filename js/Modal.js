@@ -27,8 +27,8 @@ export class Modal {
   }
 
   _addHandlerForForm() {
-    const $form = document.querySelector('form');
-
+    const $form = this.$modal.querySelector('form');
+    
     if (!$form) {
       return
     }

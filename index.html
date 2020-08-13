@@ -24,51 +24,62 @@
 
           <div id="modalSignin" class="modal">
             <div class="modal__dialog">
-              <form class="login-form login-form__signin" action="/" method="post">
-                <div class="form-group">
-                  <label>Your Email: *</label>
-                  <input type="email" name="email" placeholder="email" required>
-                </div>
-                <div class="form-group">
-                  <label>Your password: *</label>
-                  <input type="password" name="password" placeholder="password" required>
-                </div>
-                <button class="btn btn__sign-in" type="submit" name="submit">Sign in for shop</button>
-              </form>
+              <div class="modal__header">
+                <h2 class="modal__title">Sign in to shop</h2>
+                <button class="btn btn-close" type="button">&times;</button>
+              </div>
 
-              <button class="btn btn-close" type="button">&times;</button>
+              <div class="modal__body">
+                <form class="login-form login-form__signin" action="/" method="post">
+                  <div class="form-group">
+                    <label>Your Email: *</label>
+                    <input type="email" name="email" placeholder="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Your password: *</label>
+                    <input type="password" name="password" placeholder="password" required>
+                  </div>
+                  <button class="btn btn__sign-in" type="submit" name="submit">Sign in to shop</button>
+                </form>
+              </div>
             </div>
           </div>
 
           <div id="modalSignup" class="modal">
             <div class="modal__dialog">
-              <form class="login-form login-form__signup" action="/" method="post">
-                <div class="form-group">
-                  <label>Name:</label>
-                  <input type="text" name="name" placeholder="name">
-                </div>
-                <div class="form-group">
-                  <label>Surname</label>
-                  <input type="text" name="surname" placeholder="surname">
-                </div>
-                <div class="form-group">
-                  <label>Your Email: *</label>
-                  <input type="email" name="email" placeholder="email" required>
-                </div>
-                <div class="form-group">
-                  <label>Your password: *</label>
-                  <input type="password" name="password" placeholder="password" required>
-                </div>
-                <div class="form-group">
-                  <label>Repeat password: *</label>
-                  <input type="password" name="password2" placeholder="repeat password" required>
-                </div>
-                <button class="btn btn__sign-up" type="submit" name="submit">Sign up for shop</button>
-              </form>
+              <div class="modal__header">
+                <h2 class="modal__title">Sign up for shop</h2>
+                <button class="btn btn-close" type="button">&times;</button>
+              </div>
 
-              <button class="btn btn-close" type="button">&times;</button>
+              <div class="modal__body">
+                <form class="login-form login-form__signup" action="/" method="post">
+                  <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" name="name" placeholder="name">
+                  </div>
+                  <div class="form-group">
+                    <label>Surname</label>
+                    <input type="text" name="surname" placeholder="surname">
+                  </div>
+                  <div class="form-group">
+                    <label>Your Email: *</label>
+                    <input type="email" name="email" placeholder="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Your password: *</label>
+                    <input type="password" name="password" placeholder="password" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Repeat password: *</label>
+                    <input type="password" name="password2" placeholder="repeat password" required>
+                  </div>
+                  <button class="btn btn__sign-up" type="submit" name="submit">Sign up for shop</button>
+                </form>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -113,6 +124,35 @@
     </div>
 
     <div id="modalBag" class="modal modal-bag">
+
+      <div class="modal__dialog">
+        <div class="modal__header">
+          <h2 class="modal__title">Checked Beers</h2>
+          <button class="btn btn-close" type="button">&times;</button>
+        </div>
+
+        <div class="modal__body">
+          <ul class="card-list d-table">
+            <li class="card-list__item content-list d-tr">
+              <div class="content-list__item d-th">
+                <a class="content-list__link">#</a>
+              </div>
+              <div class="content-list__item d-th">
+                <a class="content-list__link">Image</a>
+              </div>
+              <div class="content-list__item d-th">
+                <a class="content-list__link">Name</a>
+              </div>
+              <div class="content-list__item d-th">
+                <a class="content-list__link">Food pairing</a>
+              </div>
+              <div class="content-list__item d-th">
+                <a class="content-list__link">Alcohol</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </main>
 
