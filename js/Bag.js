@@ -13,24 +13,21 @@ export class Bag extends Modal {
       return
     }
 
-    // const $div = elementFabric.createEl('div', {className: ['modal__dialog']});
     const $button = elementFabric.createEl('button',
                                            {
                                              className: ['btn', 'btn-close'],
                                              type: 'button'
                                            },
                                            'X');
-    // const $cardList = elementFabric.createEl('ul', {className: ['card-list', 'd-table']});
-    // const $headerList = document.querySelector('#cardList').children[0];
-    // this.$root.innerHTML = '';
+
     const $cardList = this.$root.querySelector('.card-list');
 
     while ($cardList.children[1]) {
       $cardList.lastElementChild.remove();
     }
-    // $cardList.append($headerList);
 
-    const beersFromBag = ids.map(id => beers.find(({data}) => data.id == id));
+    const beersFromBag = ids.map(id => beers.find( ({data}) => data.id === id))
+                            .filter(data => !!data);
 
     beersFromBag.forEach(({data}) => {
       const beersData = {
@@ -50,7 +47,7 @@ export class Bag extends Modal {
       for(let key in beersData) {
         let $img = '';
 
-        if (key == 'image_url') {
+        if (key === 'image_url') {
           $img = elementFabric.createEl('img',
                                         {
                                           width: '25',
@@ -73,10 +70,6 @@ export class Bag extends Modal {
       $cardList.append($card);
     });
 
-    // $div.append($cardList);
-    // $div.append($button);
-    // this.$root.append($div);
     this.$root.querySelector('.modal__dialog').append($cardList);
-    // this.$root.querySelector('.modal__dialog').append($button);
   }
 }
