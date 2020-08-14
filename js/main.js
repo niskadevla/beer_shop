@@ -33,7 +33,7 @@ function addListeners() {
     .addEventListener('click', e => {
       const ids = localStore.getFromLocalStorage();
       e.preventDefault();
-      sortInOrder('name');      
+      sortInOrder('name');
       localStore.setIsSelected(ids);
       cardList.renderCardList();
     });
@@ -43,6 +43,15 @@ function addListeners() {
       const ids = localStore.getFromLocalStorage();
       e.preventDefault();
       sortInOrder('abv');
+      localStore.setIsSelected(ids);
+      cardList.renderCardList();
+    });
+
+  document.getElementById('numberFilter')
+    .addEventListener('click', e => {
+      const ids = localStore.getFromLocalStorage();
+      e.preventDefault();
+      sortInOrder('id');
       localStore.setIsSelected(ids);
       cardList.renderCardList();
     });
