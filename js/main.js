@@ -30,34 +30,13 @@ function addListeners() {
     .addEventListener('click',() => localStore.clearSelectedGoods('#cardList'));
 
   document.getElementById('nameFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('name');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'name'));
 
   document.getElementById('alcoholFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('abv');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'abv'));
 
   document.getElementById('numberFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('id');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'id'));
 
   document.getElementById('closeHeeader')
     .addEventListener('click', () => {
@@ -94,4 +73,13 @@ function sortInOrder(key) {
 
   beers.sort((a, b) => a.data[key] > b.data[key] ? config.order : -config.order);
   config.order = -config.order;
+}
+
+function handlerForFilter(e, key) {
+  const ids = localStore.getFromLocalStorage();
+  e.preventDefault();
+  sortInOrder(key);
+  localStore.setIsSelected(ids);
+  cardList.clearCardList();
+  cardList.renderCardList(beers);
 }
