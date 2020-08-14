@@ -8,7 +8,7 @@ const cardList = new CardList('#cardList');
 const localStore = new LocalStore();
 const config = {
   page: 0,
-  order: 1,
+  order: -1,
   per_page: 15
 };
 window.beers = [];
