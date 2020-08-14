@@ -8,6 +8,19 @@ export class CardList {
     this.$root = document.querySelector(selector);
   }
 
+  setIsSelected(selectedIDs) {
+    if (!selectedIDs || !selectedIDs.length) {
+      return
+    }
+
+    selectedIDs.forEach( id => beers.forEach(beer => {
+      if (id == beer.data.id) {
+        beer.isSelected = true;
+      }
+    }));
+
+  }
+
   handlerForInput() {
     const id = +this.closest('.card-list__item').id;
 

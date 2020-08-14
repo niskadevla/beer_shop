@@ -49,20 +49,7 @@ export class LocalStore {
 
     const selectedIds = $selectedItems.map($item => +$item.id);
     return selectedIds;
-  }
-
-  setIsSelected(selectedIDs) {
-    if (!selectedIDs || !selectedIDs.length) {
-      return
-    }
-
-    selectedIDs.forEach( id => beers.forEach(beer => {
-      if (id == beer.data.id) {
-        beer.isSelected = true;
-      }
-    }));
-
-  }
+  }  
 
   showSelectedGoods(selector) {
     const selectedIDs = this._findSelectedIDs(selector);
@@ -74,7 +61,7 @@ export class LocalStore {
       return
     }
 
-    bag.renderBag(ls) && bag.showModal();    
+    bag.renderBag(ls) && bag.showModal();
   }
 
   clearSelectedGoods(selector) {

@@ -60,7 +60,7 @@ function loadGoods() {
       const ids = localStore.getFromLocalStorage();
       const newBeers = res.map(obj => ({data: obj, isSelected: false}));
       beers.push(...newBeers);
-      localStore.setIsSelected(ids);
+      cardList.setIsSelected(ids);
       cardList.renderCardList(newBeers);
     });
 }
@@ -79,7 +79,7 @@ function handlerForFilter(e, key) {
   const ids = localStore.getFromLocalStorage();
   e.preventDefault();
   sortInOrder(key);
-  localStore.setIsSelected(ids);
+  cardList.setIsSelected(ids);
   cardList.clearCardList();
   cardList.renderCardList(beers);
 }
