@@ -7,7 +7,7 @@ const modalSignup = new Modal('#modalSignup');
 const cardList = new CardList('#cardList');
 const localStore = new LocalStore();
 const config = {
-  page: 1,
+  page: 0,
   order: 1,
   per_page: 15
 };
@@ -35,7 +35,8 @@ function addListeners() {
       e.preventDefault();
       sortInOrder('name');
       localStore.setIsSelected(ids);
-      cardList.renderCardList();
+      cardList.clearCardList();
+      cardList.renderCardList(beers);
     });
 
   document.getElementById('alcoholFilter')
@@ -44,7 +45,8 @@ function addListeners() {
       e.preventDefault();
       sortInOrder('abv');
       localStore.setIsSelected(ids);
-      cardList.renderCardList();
+      cardList.clearCardList();
+      cardList.renderCardList(beers);
     });
 
   document.getElementById('numberFilter')
@@ -53,7 +55,8 @@ function addListeners() {
       e.preventDefault();
       sortInOrder('id');
       localStore.setIsSelected(ids);
-      cardList.renderCardList();
+      cardList.clearCardList();
+      cardList.renderCardList(beers);
     });
 }
 
@@ -67,13 +70,14 @@ async function getData(url) {
 }
 
 function loadGoods() {
+  config.page++;
   getData(`https://api.punkapi.com/v2/beers?page=${config.page}&per_page=${config.per_page}`)
     .then(res => {
       const ids = localStore.getFromLocalStorage();
-      beers.push(...res.map(obj => ({data: obj, isSelected: false})) );
+      const newBeers = res.map(obj => ({data: obj, isSelected: false}));
+      beers.push(...newBeers);
       localStore.setIsSelected(ids);
-      cardList.renderCardList();
-      config.page++;
+      cardList.renderCardList(newBeers);
     });
 }
 

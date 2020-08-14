@@ -18,10 +18,13 @@ export class CardList {
     }
   }
 
-  renderCardList() {
+  clearCardList() {
     while (this.$root.children[1]) {
       this.$root.lastElementChild.remove();
     }
+  }
+
+  renderCardList(beers) {
 
     beers.forEach(({data, isSelected}) => {
       const beersData = {
