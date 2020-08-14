@@ -224,7 +224,7 @@ ul {
   background-color: #ccc;
 }
 
-.content-body img {
+.content-list__item img {
   width: auto;
   height: 3rem;
 }

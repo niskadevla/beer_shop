@@ -28,7 +28,7 @@ export class CardList {
         id: data.id,
         image_url: data.image_url,
         name: data.name,
-        food_pairing: data.food_pairing,
+        food_pairing: data.food_pairing.join(', '),
         abv: data.abv,
       };
 
@@ -41,7 +41,7 @@ export class CardList {
       for(let key in beersData) {
         let $img = '';
 
-        if (key == 'image_url') {
+        if (key === 'image_url') {
           $img = elementFabric.createEl('img',
                                         {
                                           width: '25',
