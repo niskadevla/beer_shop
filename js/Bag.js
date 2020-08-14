@@ -32,7 +32,7 @@ export class Bag extends Modal {
     if (!beersFromBag.length) {
       return
     }
-    
+
     beersFromBag.forEach(({data}) => {
       const beersData = {
         id: data.id,

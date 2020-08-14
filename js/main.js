@@ -7,7 +7,7 @@ const modalSignup = new Modal('#modalSignup');
 const cardList = new CardList('#cardList');
 const localStore = new LocalStore();
 const config = {
-  page: 0,
+  page: 1,
   order: -1,
   per_page: 15
 };
@@ -24,7 +24,7 @@ function addListeners() {
     .addEventListener('click',loadGoods);
 
   document.getElementById('showSelected')
-    .addEventListener('click',() => localStore.showSelectedGoods('#cardList'));
+    .addEventListener('click',() => cardList.showSelectedGoods('#cardList'));
 
   document.getElementById('clearSelected')
     .addEventListener('click',() => localStore.clearSelectedGoods('#cardList'));
@@ -54,7 +54,6 @@ async function getData(url) {
 }
 
 function loadGoods() {
-  config.page++;
   getData(`https://api.punkapi.com/v2/beers?page=${config.page}&per_page=${config.per_page}`)
     .then(res => {
       const ids = localStore.getFromLocalStorage();
@@ -63,6 +62,8 @@ function loadGoods() {
       cardList.setIsSelected(ids);
       cardList.renderCardList(newBeers);
     });
+
+  config.page++;
 }
 
 
