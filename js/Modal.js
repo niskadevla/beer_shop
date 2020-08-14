@@ -8,12 +8,14 @@ export class Modal {
 
   showModal() {
     this.$modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
     this._addHandlerForClose();
     this._addHandlerForForm();
   }
 
   _closeModal() {
-    this.$modal.style.display = ''
+    this.$modal.style.display = '';
+    document.body.style.overflow = '';
   }
 
   _addHandlerForClose() {
@@ -28,7 +30,7 @@ export class Modal {
 
   _addHandlerForForm() {
     const $form = this.$modal.querySelector('form');
-    
+
     if (!$form) {
       return
     }

@@ -29,6 +29,10 @@ export class Bag extends Modal {
     const beersFromBag = ids.map(id => beers.find( ({data}) => data.id === id))
                             .filter(data => !!data);
 
+    if (!beersFromBag.length) {
+      return
+    }
+    
     beersFromBag.forEach(({data}) => {
       const beersData = {
         id: data.id,
@@ -71,5 +75,7 @@ export class Bag extends Modal {
     });
 
     this.$root.querySelector('.modal__dialog').append($cardList);
+
+    return true;
   }
 }

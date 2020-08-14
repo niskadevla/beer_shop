@@ -36,7 +36,7 @@ export class LocalStore {
 
     const index = ls.findIndex(item => item == id);
 
-    if (~index) {      
+    if (~index) {
       ls.splice(index, 1);
       localStorage.setItem('selectedBeers', JSON.stringify(ls));
     }
@@ -74,8 +74,7 @@ export class LocalStore {
       return
     }
 
-    bag.renderBag(ls);
-    bag.showModal();
+    bag.renderBag(ls) && bag.showModal();    
   }
 
   clearSelectedGoods(selector) {
