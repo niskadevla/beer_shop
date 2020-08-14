@@ -58,6 +58,11 @@ function addListeners() {
       cardList.clearCardList();
       cardList.renderCardList(beers);
     });
+
+  document.getElementById('closeHeeader')
+    .addEventListener('click', () => {
+      document.querySelector('.header').style.display = 'none';
+    });
 }
 
 addListeners();

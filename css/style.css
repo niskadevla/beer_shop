@@ -124,6 +124,16 @@ ul {
   border-color: #cb4c2e;
 }
 
+.btn__close-header {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  background-color: transparent;
+  border: 20px solid transparent;
+  border-bottom: 20px solid #34cdcd;  
+  cursor: pointer;
+}
+
 .header {
   position: relative;
   left: 0;
