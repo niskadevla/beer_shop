@@ -31,15 +31,19 @@ function addListeners() {
 
   document.getElementById('nameFilter')
     .addEventListener('click', e => {
+      const ids = localStore.getFromLocalStorage();
       e.preventDefault();
-      sortInOrder('name');
+      sortInOrder('name');      
+      localStore.setIsSelected(ids);
       cardList.renderCardList();
     });
 
   document.getElementById('alcoholFilter')
     .addEventListener('click', e => {
+      const ids = localStore.getFromLocalStorage();
       e.preventDefault();
       sortInOrder('abv');
+      localStore.setIsSelected(ids);
       cardList.renderCardList();
     });
 }
@@ -56,8 +60,8 @@ async function getData(url) {
 function loadGoods() {
   getData(`https://api.punkapi.com/v2/beers?page=${config.page}&per_page=${config.per_page}`)
     .then(res => {
-      beers.push(...res.map(obj => ({data: obj, isSelected: false})) );
       const ids = localStore.getFromLocalStorage();
+      beers.push(...res.map(obj => ({data: obj, isSelected: false})) );
       localStore.setIsSelected(ids);
       cardList.renderCardList();
       config.page++;
