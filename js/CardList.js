@@ -16,7 +16,7 @@ export class CardList {
     }
 
     selectedIDs.forEach( id => beers.forEach(beer => {
-      if (id == beer.data.id) {
+      if (id === beer.data.id) {        
         beer.isSelected = true;
       }
     }));
