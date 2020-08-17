@@ -1,11 +1,48 @@
 import {ElementFabric} from './ElementFabric.js';
-import {LocalStore} from './LocalStore.js'
+import {LocalStore} from './LocalStore.js';
+import {Bag} from './Bag.js';
+const bag = new Bag('#modalBag');
 const elementFabric = new ElementFabric();
 const localStore = new LocalStore();
 
 export class CardList {
   constructor(selector) {
     this.$root = document.querySelector(selector);
+  }
+
+  setIsSelected(selectedIDs) {
+    if (!selectedIDs || !selectedIDs.length) {
+      return
+    }
+
+    selectedIDs.forEach( id => beers.forEach(beer => {
+      if (id === beer.data.id) {        
+        beer.isSelected = true;
+      }
+    }));
+
+  }
+
+  _findSelectedIDs(selector) {
+    const $cardList = document.querySelector(selector);
+    const $selectedItems = [...$cardList.children]
+                              .filter(child => child.querySelector('input')?.checked);
+
+    const selectedIds = $selectedItems.map($item => +$item.id);
+    return selectedIds;
+  }
+
+  showSelectedGoods(selector) {
+    const selectedIDs = this._findSelectedIDs(selector);
+
+    localStore.saveToLocalStorage(selectedIDs);
+    let ls = localStore.getFromLocalStorage();
+
+    if (!ls || !ls.length) {
+      return
+    }
+
+    bag.renderBag(ls) && bag.showModal();
   }
 
   handlerForInput() {

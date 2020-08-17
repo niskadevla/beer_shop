@@ -21,11 +21,7 @@ export class Modal {
   _addHandlerForClose() {
     const $button = this.$modal.querySelector('.btn-close');
 
-    if (!$button) {
-      return
-    }
-
-    $button.addEventListener('click', this._closeModal);
+    $button && $button.addEventListener('click', this._closeModal);
   }
 
   _addHandlerForForm() {

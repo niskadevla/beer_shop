@@ -7,7 +7,7 @@ const modalSignup = new Modal('#modalSignup');
 const cardList = new CardList('#cardList');
 const localStore = new LocalStore();
 const config = {
-  page: 0,
+  page: 1,
   order: -1,
   per_page: 15
 };
@@ -24,40 +24,19 @@ function addListeners() {
     .addEventListener('click',loadGoods);
 
   document.getElementById('showSelected')
-    .addEventListener('click',() => localStore.showSelectedGoods('#cardList'));
+    .addEventListener('click',() => cardList.showSelectedGoods('#cardList'));
 
   document.getElementById('clearSelected')
     .addEventListener('click',() => localStore.clearSelectedGoods('#cardList'));
 
   document.getElementById('nameFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('name');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'name'));
 
   document.getElementById('alcoholFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('abv');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'abv'));
 
   document.getElementById('numberFilter')
-    .addEventListener('click', e => {
-      const ids = localStore.getFromLocalStorage();
-      e.preventDefault();
-      sortInOrder('id');
-      localStore.setIsSelected(ids);
-      cardList.clearCardList();
-      cardList.renderCardList(beers);
-    });
+    .addEventListener('click', e => handlerForFilter(e, 'id'));
 
   document.getElementById('closeHeeader')
     .addEventListener('click', () => {
@@ -75,15 +54,16 @@ async function getData(url) {
 }
 
 function loadGoods() {
-  config.page++;
   getData(`https://api.punkapi.com/v2/beers?page=${config.page}&per_page=${config.per_page}`)
     .then(res => {
       const ids = localStore.getFromLocalStorage();
       const newBeers = res.map(obj => ({data: obj, isSelected: false}));
       beers.push(...newBeers);
-      localStore.setIsSelected(ids);
+      cardList.setIsSelected(ids);
       cardList.renderCardList(newBeers);
     });
+
+  config.page++;
 }
 
 
@@ -94,4 +74,13 @@ function sortInOrder(key) {
 
   beers.sort((a, b) => a.data[key] > b.data[key] ? config.order : -config.order);
   config.order = -config.order;
+}
+
+function handlerForFilter(e, key) {
+  const ids = localStore.getFromLocalStorage();
+  e.preventDefault();
+  sortInOrder(key);
+  cardList.setIsSelected(ids);
+  cardList.clearCardList();
+  cardList.renderCardList(beers);
 }

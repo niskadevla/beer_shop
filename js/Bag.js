@@ -27,12 +27,12 @@ export class Bag extends Modal {
     }
 
     const beersFromBag = ids.map(id => beers.find( ({data}) => data.id === id))
-                            .filter(data => !!data);
+                            .filter(data => data);
 
     if (!beersFromBag.length) {
       return
     }
-    
+
     beersFromBag.forEach(({data}) => {
       const beersData = {
         id: data.id,
